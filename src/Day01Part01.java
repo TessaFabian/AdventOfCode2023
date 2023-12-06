@@ -20,7 +20,8 @@ public class Day01Part01 {
         for (int index = 0; index < calibrationString.length(); index++) {
             if (Character.isDigit(calibrationString.charAt(index))) {
                 calibrationValueAsString += Character.toString(calibrationString.charAt(index));
-                index = calibrationString.length();
+                //index = calibrationString.length();
+                break;
             }
 
         }
@@ -29,7 +30,8 @@ public class Day01Part01 {
         for (int index = 0; index < calibrationString.length(); index++) {
             if (Character.isDigit(calibrationString.charAt(index))) {
                 calibrationValueAsString += Character.toString(calibrationString.charAt(index));
-                index = calibrationString.length();
+                //index = calibrationString.length();
+                break;
             }
 
         }
