@@ -1,15 +1,23 @@
-//Trebuchet?
+package day01;//Trebuchet?
 
-import java.util.Arrays;
-import java.util.List;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Day01Part01 {
 
-    private static void printCalibrationSum(String[] calibrationStrings) {
+    private static void printCalibrationSum() {
         int calibrationValueSum = 0;
-        for (String calibrationString: calibrationStrings) {
-            calibrationValueSum += getCalibrationValue(calibrationString);
+        try {
+            Scanner scanner = new Scanner(new File("src/day01/inputDay01.txt"));
+            while (scanner.hasNextLine()) {
+                calibrationValueSum += getCalibrationValue(scanner.nextLine());
+            }
+        } catch (FileNotFoundException exception) {
+            throw new RuntimeException(exception);
         }
+
         System.out.println(calibrationValueSum);
     }
 
@@ -40,8 +48,8 @@ public class Day01Part01 {
     }
 
     public static void main(String[] args) {
-        printCalibrationSum(new String[]{"1abc2","pqr3stu8vwx","a1b2c3d4e5f","treb7uchet"});
-        //142
+        printCalibrationSum();
+        //55130
     }
 
 }
