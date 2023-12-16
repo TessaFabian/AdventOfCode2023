@@ -30,13 +30,6 @@ public class Day01Part02 {
             calibrationValueAsString += checkSubString(calibrationString);
         }
 
-        calibrationString = reverseMyString(calibrationString);
-        if (calibrationString.length() == 3 || calibrationString.length() == 4 || calibrationString.length() == 5) {
-            calibrationValueAsString += getStringValue(calibrationString);
-        } else {
-            calibrationValueAsString += checkSubString(calibrationString);
-        }
-
 
         return Integer.parseInt(calibrationValueAsString);
     }
@@ -45,8 +38,24 @@ public class Day01Part02 {
     private static String checkSubString(String calibrationString) {
         String subString = "";
         for (int i = 0; i <= calibrationString.length() - 5; i++) {
-            for (int border = 2; border <= 4; border++) {
-                subString += getStringValue(calibrationString.substring(i, i + border));
+            for (int border = 2; border <= 5; border++) {
+                String value = getStringValue(calibrationString.substring(i, i + border));
+                if (!value.equals("")) {
+                    subString = value;
+                    i = calibrationString.length();
+                    border = 6;
+                }
+            }
+        }
+
+        for (int i = calibrationString.length() - 1; i >= 5; i--) {
+            for (int border = 2; border <= 5; border++) {
+                String value = getStringValue(calibrationString.substring(i-border, i+1));
+                if (!value.equals("")) {
+                    subString += value;
+                    i = 0;
+                    border = 6;
+                }
             }
         }
         return subString;
