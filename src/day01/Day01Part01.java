@@ -10,7 +10,7 @@ public class Day01Part01 {
     private static void printCalibrationSum() {
         int calibrationValueSum = 0;
         try {
-            Scanner scanner = new Scanner(new File("src/day01/inputDay01.txt"));
+            Scanner scanner = new Scanner(new File("src/day01/inputDay01_b.txt"));
             while (scanner.hasNextLine()) {
                 calibrationValueSum += getCalibrationValue(scanner.nextLine());
             }
