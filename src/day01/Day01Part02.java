@@ -19,14 +19,17 @@ public class Day01Part02 {
         }
         System.out.println(calibrationValueSum);
     }
-
+/*
+* Character.isDigit(calibrationString.charAt(index))*/
     private static int getCalibrationValue(String calibrationString) {
         String calibrationValueAsString = "";
         if (calibrationString.length() <= 2) {
             return 0;
         } else if (calibrationString.length() == 3 || calibrationString.length() == 4 || calibrationString.length() == 5) {
             calibrationValueAsString += getStringValue(calibrationString);
-        } else {
+        }
+
+        else {
             calibrationValueAsString += checkSubString(calibrationString);
         }
 
@@ -37,27 +40,36 @@ public class Day01Part02 {
 
     private static String checkSubString(String calibrationString) {
         String subString = "";
-        for (int i = 0; i <= calibrationString.length() - 5; i++) {
-            for (int border = 2; border <= 5; border++) {
-                String value = getStringValue(calibrationString.substring(i, i + border));
-                if (!value.equals("")) {
-                    subString = value;
-                    i = calibrationString.length();
-                    border = 6;
+        if (Character.isDigit(calibrationString.charAt(0))) {
+            subString = Character.toString(calibrationString.charAt(0));
+        } else {
+            for (int i = 0; i <= calibrationString.length() - 5; i++) {
+                for (int border = 2; border <= 5; border++) {
+                    String value = getStringValue(calibrationString.substring(i, i + border));
+                    if (!value.equals("")) {
+                        subString = value;
+                        i = calibrationString.length();
+                        border = 6;
+                    }
                 }
             }
         }
 
-        for (int i = calibrationString.length() - 1; i >= 5; i--) {
-            for (int border = 2; border <= 5; border++) {
-                String value = getStringValue(calibrationString.substring(i-border, i+1));
-                if (!value.equals("")) {
-                    subString += value;
-                    i = 0;
-                    border = 6;
+        if (Character.isDigit(calibrationString.charAt(calibrationString.length()-1))) {
+            subString += Character.toString(calibrationString.charAt(calibrationString.length()-1));
+        } else {
+            for (int i = calibrationString.length() - 1; i >= 5; i--) {
+                for (int border = 2; border <= 5; border++) {
+                    String value = getStringValue(calibrationString.substring(i-border, i+1));
+                    if (!value.equals("")) {
+                        subString += value;
+                        i = 0;
+                        border = 6;
+                    }
                 }
             }
         }
+
         return subString;
     }
 
